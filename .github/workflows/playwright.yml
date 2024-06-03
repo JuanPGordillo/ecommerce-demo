@@ -16,13 +16,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Set Playwright Secrets with Encrypted Environment Variables
+      run: npx playwright install --with-deps      
+    - name: Run Playwright tests
       env:
         PLAYWRIGHT_BASE_URL: ${{ secrets.BASE_URL }}
         PLAYWRIGHT_USERNAME: ${{ secrets.USERNAME }}
         PLAYWRIGHT_PASSWORD: ${{ secrets.PASSWORD }}
-    - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v3
       if: always()
